@@ -16,11 +16,17 @@ import {
   facebook,
   instagram,
   telegram,
+  googlesvg,
   twitter,
   netflixmini,
-  netflixsvg
+  netflixsvg,
+  github
 } from "../assets";
 
+
+
+
+//Constastes para header / navbar
 export const navigation = [
   {
     id: "0",
@@ -45,22 +51,51 @@ export const navigation = [
   {
     id: "4",
     title: "Crear Cuenta",
-    url: "#crear-cuenta",
+    url: "/register",
     onlyMobile: true,
   },
   {
     id: "5",
     title: "Iniciar Sesión",
-    url: "#Iniciarsesion",
+    url: "/login",
     onlyMobile: true,
   },
 ];
 
+//Constastes para Login
+export const loginFormFields = [
+  { type: "text", placeholder: "Username" },
+  { type: "password", placeholder: "Password" }
+];
 
+//Constastes para Login
+export const loginButtonText = "Login";
+export const loginFooterText = "Restablecer contraseña";
+export const loginFooterLink = {
+  text: "Don't have an account?",
+  href: "/register",
+  linkText: "Register"
+};
 
+//Constastes para Register
+export const RegisterFormFields = [
+  { type: "text", placeholder: "Nombre" },
+  { type: "text", placeholder: "Email" },
+  { type: "password", placeholder: "Contraseña" },
+  { type: "password", placeholder: "Confirma tu contraseña" }
+];
+
+export const RegisterButtonText = "Registrarse";
+export const RegisterFooterLink = {
+  text: "Ya tienes una cuenta?",
+  href: "/login",
+  linkText: "Inicia Sesión"
+};
 
 export const companyLogos = [netflixmini, netflixsvg];
 
+
+//Constastes para beneficios en Hero
 export const benefits = [
   {
     id: "0",
@@ -108,6 +143,8 @@ export const benefits = [
   },
 ];
 
+
+//Constastes para mostrar cuentas disponibles 
 export const Accounts = [
   {
     id: "0",
@@ -181,14 +218,11 @@ export const Accounts = [
   },
 ];
 
+
+//Constastes para footer
 export const socials = [
 
-  {
-    id: "0",
-    title: "Twitter",
-    iconUrl: twitter,
-    url: "https://www.facebook.com/",
-  },
+
   {
     id: "1",
     title: "Instagram",
@@ -206,5 +240,11 @@ export const socials = [
     title: "Facebook",
     iconUrl: facebook,
     url: "#",
+  },
+  {
+    id: "4",
+    title: "github",
+    iconUrl: github,
+    url: "https://github.com/yazzuke",
   },
 ];

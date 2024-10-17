@@ -4,6 +4,8 @@ import { NextUIProvider } from "@nextui-org/react";
 import Home from "./pages/Home/Home";
 import Contacts from "./pages/Contacts/Contacts";
 import Pricing from "./pages/Precios/Pricing";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register"
 import ButtonGradient from "./assets/svg/ButtonGradient";
 import Footer from "./components/Footer";
 
@@ -15,6 +17,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contacts" element={<Contacts />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
           {/* Agrega más rutas según sea necesario */}
         </Routes>
         <Footer />
