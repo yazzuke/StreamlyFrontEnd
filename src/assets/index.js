@@ -1,4 +1,3 @@
-import brainwave from "./brainwave.svg";
 import check from "./check.svg";
 import play from "./play.svg";
 import gradient from "./gradient.png";
@@ -48,7 +47,6 @@ import youtubepremium from "./Accounts/youtubepremium.png"
 import netflixmini from "../assets/netflixmini.png"
 
 export {
-  brainwave,
   check,
   play,
   gradient,

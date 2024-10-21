@@ -1,9 +1,9 @@
-import { benefits } from "../constants";
-import Heading from "./Heading";
-import Button from "./Button";
-import Section from "./Section";
-import { GradientLight } from "./design/Benefits";
-import ClipPath from "../assets/svg/ClipPath";
+import { benefits } from "../../constants";
+import Heading from "../Heading";
+import Button from "../Button";
+import Section from "../Section";
+import { GradientLight } from "../design/Benefits";
+import ClipPath from "../../assets/svg/ClipPath";
 
 const Benefits = () => {
   return (
@@ -55,7 +55,7 @@ const Benefits = () => {
           ))}
         </div>
         <div className="flex justify-center">
-          <Button className="relative items-center" href="/pricing" white>
+          <Button className="relative items-center" href="/products" white>
             Comprar
           </Button>
         </div>

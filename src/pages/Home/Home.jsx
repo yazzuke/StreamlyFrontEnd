@@ -1,6 +1,6 @@
-import Benefits from "../../components/Benefits";
-import Header from "../../components/Header";
-import Hero from "../../components/Hero";
+import Benefits from "../../components/Hero/Benefits";
+import Header from "../../components/Header/Header";
+import Hero from "../../components/Hero/Hero";
 import CompanyLogos from "../../components/CompanyLogos";
 
 const Home = () => {

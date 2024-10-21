@@ -1,9 +1,9 @@
-import { curve, multistreams } from "../assets";
-import Button from "./Button";
-import Section from "./Section";
-import { Gradient } from "./design/Hero";
+import { curve, multistreams } from "../../assets";
+import Button from "../../components/Button";
+import Section from "../../components/Section";
+import { Gradient } from "../../components/design/Hero";
 import { useRef } from "react";
-import Generating from "./Generating";
+import Generating from "../../components/Generating";
 
 
 const Hero = () => {
@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <Section
-      className="pt-[10rem] -mt-[6rem]"
+      className="pt-[10rem] -mt-[10rem]"
       crosses
       customPaddings
       id="hero"
@@ -37,7 +37,7 @@ const Hero = () => {
             insuperables. Explora una variedad de cuentas como Netflix, Spotify,
             Disney+ y más, todo en un solo lugar.
           </p>
-          <Button href="/pricing" white>
+          <Button href="/products" white>
             Como funciona
           </Button>
         </div>

@@ -1,0 +1,69 @@
+import React from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { Card, CardHeader, CardBody, Image, Button, Tooltip } from "@nextui-org/react";
+import { AccountsInfo, ComboInfo } from "../../constants";
+import { useNavigate } from "react-router-dom";
+
+// Componente de Card para mostrar cuentas o combos
+const AccountCard = ({ item, handleCardClick }) => (
+  <Tooltip content="Click para más detalles" key={item.id}>
+    <Card isHoverable className="m-2 cursor-pointer" onClick={() => handleCardClick(item.id)}>
+      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+        <h4 className="font-bold text-large">{item.title}</h4>
+        <div className="flex items-center space-x-2">
+          <p className="text-tiny uppercase font-bold text-green-500">${item.price}</p>
+          <p className="text-tiny uppercase font-bold">{item.duration}</p>
+        </div>
+      </CardHeader>
+      <CardBody className="overflow-visible py-2">
+        <Image
+          alt={item.title}
+          className="object-cover rounded-xl"
+          src={item.imageUrl}
+          width={270}
+          height={180}
+          loading="lazy" // Lazy load para mejorar el rendimiento
+        />
+        <Button className="mt-2 w-full bg-transparent">Agregar</Button>
+      </CardBody>
+    </Card>
+  </Tooltip>
+);
+
+// Carrousel de cuentas y combos
+const CarrouselAccounts = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/accounts/${id}`);
+  };
+
+  // Combina los datos de AccountsInfo y ComboInfo
+  const allItems = [...AccountsInfo, ...ComboInfo];
+
+  const responsive = {
+    superLargeDesktop: { breakpoint: { max: 4000, min: 1024 }, items: 5 },
+    desktop: { breakpoint: { max: 1024, min: 768 }, items: 3 },
+    tablet: { breakpoint: { max: 768, min: 464 }, items: 2 },
+    mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
+  };
+
+  return (
+    <div className="dark">
+      <Carousel
+        responsive={responsive}
+        autoPlay={true}
+        infinite
+        autoPlaySpeed={2000}
+        pauseOnHover // Pausa cuando el usuario interactúa
+      >
+        {allItems.map((item) => (
+          <AccountCard key={item.id} item={item} handleCardClick={handleCardClick} />
+        ))}
+      </Carousel>
+    </div>
+  );
+};
+
+export default CarrouselAccounts;

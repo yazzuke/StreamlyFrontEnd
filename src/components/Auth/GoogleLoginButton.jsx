@@ -1,5 +1,5 @@
 import React from "react";
-import {googlesvg} from "../assets/index";
+import {googlesvg} from "../../assets/index";
 
 const GoogleLoginButton = ({ onClick }) => {
   return (

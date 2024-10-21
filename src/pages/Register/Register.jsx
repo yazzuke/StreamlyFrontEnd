@@ -1,12 +1,12 @@
 import Section from "../../components/Section";
-import Header from "../../components/Header";
-import AuthForm from "../../components/AuthForm";
+import Header from "../../components/Header/Header";
+import AuthForm from "../../components/Auth/AuthForm";
 import {
   RegisterFormFields,
   RegisterButtonText,
   RegisterFooterLink,
 } from "../../constants/index";
-import GoogleLoginButton from "../../components/GoogleLoginButton";
+
 
 const Register = () => {
   return (

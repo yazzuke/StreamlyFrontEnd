@@ -2,11 +2,13 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}",
-     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+  content: [
+    "./index.html", 
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   
   theme: {
@@ -77,10 +79,10 @@ export default {
           "conic-gradient(from 225deg, #FFC876, #79FFF7, #9F53FF, #FF98E2, #FFC876)",
       },
     },
-    darkMode: "class",
-    plugins: [nextui()],
   },
+  darkMode: "class",
   plugins: [
+    nextui(),
     plugin(function ({ addBase, addComponents, addUtilities }) {
       addBase({});
       addComponents({

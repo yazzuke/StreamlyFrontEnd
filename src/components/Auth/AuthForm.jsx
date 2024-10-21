@@ -1,6 +1,10 @@
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Input } from "@nextui-org/react";
+ 
 
 const AuthForm = ({ title, fields, buttonText, footerText, footerLink, onSubmit }) => {
+
+
+
   return (
     <Card className="flex flex-wrap justify-center p-4">
       <CardHeader className="flex flex-col gap-3 items-center">
@@ -9,11 +13,12 @@ const AuthForm = ({ title, fields, buttonText, footerText, footerLink, onSubmit 
       <Divider />
       <CardBody>
         {fields.map((field, index) => (
-          <input
+          <Input
+          className="mb-4 py-1 px-2 text-white   bg-slate-700 border border-slate-600  focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out shadow-md hover:bg-slate-600 rounded-lg"
             key={index}
             type={field.type}
             placeholder={field.placeholder}
-            className="w-full p-3 mb-4 text-black rounded-lg"
+
           />
         ))}
         <button
