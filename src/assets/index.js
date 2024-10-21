@@ -6,8 +6,6 @@ import searchMd from "./search-md.svg";
 import plusSquare from "./plus-square.svg";
 import loading from "./loading.png";
 
-import netflixsvg from "./logos/netflix.svg";
-
 
 import curve from "./hero/curve.png";
 import multistreams from "./hero/mutilstreams.jpg"
@@ -34,6 +32,8 @@ import telegram from "./socials/telegram.svg";
 import twitter from "./socials/twitter.svg";
 import github from "./socials/github.svg";
 
+
+// Imagenes para productos
 import netflix from "./Accounts/netflix.jpg"
 import spotify from "./Accounts/spotify.jpg"
 import max from "./Accounts/max.jpg"
@@ -44,7 +44,19 @@ import crunchyroll from "./Accounts/crunchyroll.jpg"
 import paramountplus from "./Accounts/paramountplus.jpg"
 import vix from "./Accounts/vix.jpg"
 import youtubepremium from "./Accounts/youtubepremium.png"
-import netflixmini from "../assets/netflixmini.png"
+
+
+//SVG para combos.
+import netflixsvg from "../assets/Combos/netflix.svg"
+import applemusicsvg from "../assets/Combos/applemusic.svg"
+import crunchyrollsvg from "../assets/Combos/crunchyroll.svg"
+import maxsvg from "../assets/Combos/max.svg"
+import paramountplussvg from "../assets/Combos/paramountplus.svg"
+import primevideosvg from "../assets/Combos/primevideo.svg"
+import spotifysvg from "../assets/Combos/spotifywordmark.svg"
+import ytmusicsvg from "../assets/Combos/youtubemusicwhite.svg"
+import disneyplussvg from "../assets/Combos/disney+svg.svg"
+
 
 export {
   check,
@@ -81,7 +93,14 @@ export {
   paramountplus,
   vix,
   youtubepremium,
-  netflixmini,
   netflixsvg,
+  ytmusicsvg,
+  maxsvg,
+  paramountplussvg,
+  spotifysvg,
+  primevideosvg,
+  crunchyrollsvg,
+  disneyplussvg,
+  applemusicsvg,
   googlesvg
 };

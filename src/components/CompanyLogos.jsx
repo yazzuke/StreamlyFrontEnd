@@ -1,10 +1,10 @@
-import { companyLogos } from "../constants";
+//import { companyLogos } from "../constants";
 
 const CompanyLogos = ({ className }) => {
   return (
     <div className={className}>
       <ul className="flex">
-        {companyLogos.map((logo, index) => (
+        {map((logo, index) => (
           <li
             className="flex items-center justify-center flex-1 pb-10"
             key={index}

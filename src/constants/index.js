@@ -17,8 +17,15 @@ import {
   instagram,
   telegram,
   googlesvg,
-  netflixmini,
   netflixsvg,
+  ytmusicsvg,
+  maxsvg,
+  paramountplussvg,
+  spotifysvg,
+  primevideosvg,
+  crunchyrollsvg,
+  applemusicsvg,
+  disneyplussvg,
   github,
 } from "../assets";
 
@@ -88,7 +95,7 @@ export const RegisterFooterLink = {
   linkText: "Inicia Sesión",
 };
 
-export const companyLogos = [netflixmini, netflixsvg];
+
 
 //Constastes para beneficios en Hero
 export const benefits = [
@@ -242,7 +249,14 @@ export const ComboInfo = [
     imageUrl: netflix,
     description:
       "El Combo Premium te brinda acceso a las plataformas más populares de entretenimiento, incluyendo Netflix, Spotify y Disney+. Con este combo, puedes disfrutar de una amplia variedad de contenido en video y música, todo en un solo lugar. Ideal para aquellos que buscan una experiencia completa de entretenimiento, el Combo Premium te ofrece acceso ilimitado a tus plataformas favoritas a un precio insuperable. Disfruta de películas, series, música y más con este combo exclusivo.",
-  },
+      items: [
+        { svg: netflixsvg },
+        { svg: spotifysvg },
+        { svg: paramountplussvg},
+        { svg: disneyplussvg },
+        { svg: primevideosvg },
+      ]
+    },
   {
     id: "1",
     title: "Combo Familiar",
@@ -251,7 +265,12 @@ export const ComboInfo = [
     imageUrl: spotify,
     description:
       "El Combo Familiar es perfecto para compartir con tus seres queridos, ofreciendo acceso a plataformas como Netflix, Disney+ y Amazon Prime Video. Con este combo, cada miembro de la familia puede disfrutar de su contenido favorito, desde películas y series hasta música y programas infantiles. Además, el Combo Familiar te brinda la flexibilidad de elegir entre una amplia gama de opciones para satisfacer los gustos de todos. Disfruta de noches de cine, maratones de series y música para toda la familia con este combo especial.",
-  },
+      items: [
+        { svg: crunchyrollsvg },
+        { svg: maxsvg },
+        { svg: applemusicsvg },
+      ]
+    },
  
 ];
 

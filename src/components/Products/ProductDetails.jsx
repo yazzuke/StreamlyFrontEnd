@@ -5,7 +5,7 @@ import CarrouselAccounts from "./CarrouselAccounts";
 import Header from "../Header/Header";
 
 // Componente que renderiza la estructura del producto (ya sea cuenta o combo)
-export default function ProductDetails({ product }) {
+export default function ProductDetails({ product, isCombo }) {
   if (!product) {
     return <div>Producto no encontrado</div>;
   }
@@ -30,6 +30,21 @@ export default function ProductDetails({ product }) {
         <p className="text-3xl md:text-3xl uppercase font-bold text-center md:text-left text-green-600 mt-0">
           ${product.price}
         </p>
+
+        {/* Si el producto es un combo, renderizar la sección "¿Qué trae el combo?" aquí */}
+        {isCombo && (
+          <div className="mt-8 px-4 md:px-0">
+            <h3 className="text-2xl font-bold">¿Qué trae el combo?</h3>
+            <div className="flex flex-wrap mt-4">
+              {product.items.map((item, index) => (
+                <div key={index} className="flex items-center space-x-2 m-2">
+                  <img src={item.svg} alt={item.name} className="h-12" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex items-center space-x-2 px-4 md:px-0">
           <RadioGroupMonhtsAccounts />
         </div>
@@ -41,6 +56,8 @@ export default function ProductDetails({ product }) {
           <Button className="w-44">Agregar</Button>
         </div>
       </div>
+
+      {/* Mantén el carrousel debajo de los detalles */}
       <div className="w-screen px-4 py-5">
         <h3 className="text-2xl font-bold text-left my-8">
           Cosas que te pueden interesar

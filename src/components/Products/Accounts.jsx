@@ -14,7 +14,8 @@ const Account = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center space-x-0 md:space-x-4 ">
+    <div className="flex flex-wrap justify-center space-x-2 md:space-x-5  ">
+      <div></div>
       {AccountsInfo.map((item) => (
         <ProductCard
           key={item.id}

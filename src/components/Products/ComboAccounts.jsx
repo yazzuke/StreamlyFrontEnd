@@ -19,7 +19,6 @@ const ComboAccounts = () => {
           id={combo.id}
           title={combo.title}
           price={combo.price}
-          duration={combo.duration}
           imageUrl={combo.imageUrl}
           onClick={() => handleCardClick(combo.id)}
         />

@@ -14,3 +14,4 @@ export default function AccountsDetails() {
 
   return <ProductDetails product={account} />;
 }
+

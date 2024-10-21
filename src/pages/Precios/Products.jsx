@@ -10,7 +10,7 @@ const Products = () => {
 
         <Header />
         <Accounts className/>
-        <div className="bg-black">
+        <div className="py-12">
         <ComboAccounts />
       </div>
       </div>
