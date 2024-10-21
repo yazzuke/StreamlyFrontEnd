@@ -3,6 +3,8 @@ import { Card, CardHeader, CardBody, Image, Button, Tooltip } from "@nextui-org/
 
 // Base de las card para mostrar los productos o combos
 const ProductCard = ({ id, title, price, duration, imageUrl, onClick }) => {
+
+  
   return (
     <Tooltip className="dark" content="Click para más detalles">
       <Card

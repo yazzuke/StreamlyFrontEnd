@@ -6,6 +6,10 @@ import ProductDetails from "./ProductDetails";
 // Componente que renderiza la estructura del COMBO seleccionado y lo muestra individualmente en la página
 export default function ComboDetails() {
   const { id } = useParams();
+  window.scrollTo({
+    top: 0, 
+    behavior: "smooth", 
+  });
   const combo = ComboInfo.find((item) => item.id === id);
 
   return <ProductDetails product={combo} />;

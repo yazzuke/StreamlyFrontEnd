@@ -45,14 +45,14 @@ const CarrouselAccounts = () => {
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 <h4 className="font-bold text-large">{item.title}</h4>
                 <div className="flex items-center space-x-2">
-                  <p className="text-tiny uppercase font-bold text-green-500">${item.price}</p>
-                  <p className="text-tiny uppercase font-bold">{item.duration}</p>
+                  <p className="text-base uppercase font-bold text-green-500">${item.price}</p>
+                  <p className="text-base uppercase font-bold">{item.duration}</p>
                 </div>
               </CardHeader>
               <CardBody className="overflow-visible py-2">
                 <Image
                   alt="Card background"
-                  className="object-cover rounded-xl"
+                  className="object-cover rounded-xl left-5"
                   src={item.imageUrl}
                   width={270}
                   height={180}
