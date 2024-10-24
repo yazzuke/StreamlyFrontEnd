@@ -1,13 +1,10 @@
 import { RadioGroup, Radio, cn } from "@nextui-org/react";
 
-
-// Componente que renderiza el radio button de los meses de duración de la cuenta
-export const CustomRadio = (props) => {
-  const { children, ...otherProps } = props;
-
+// Componente CustomRadio ajustado
+export const CustomRadio = ({ children, ...props }) => {
   return (
     <Radio
-      {...otherProps}
+      {...props}
       classNames={{
         base: cn(
           "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
@@ -21,15 +18,18 @@ export const CustomRadio = (props) => {
   );
 };
 
-export default function RadioGroupTypeAccounts() {
+// Componente RadioGroupTypeAccounts actualizado
+export default function RadioGroupTypeAccounts({ selectedType, setSelectedType }) {
   return (
     <RadioGroup
       label="Tipo de cuenta"
       orientation="horizontal"
       description="De esto depende el tipo de cuenta que se creará"
+      value={selectedType} 
+      onValueChange={setSelectedType} 
     >
-      <CustomRadio value="1">Una Pantalla</CustomRadio>
-      <CustomRadio value="2">Completa</CustomRadio>
+      <CustomRadio value="Pantalla">Una Pantalla</CustomRadio>
+      <CustomRadio value="Completa">Completa</CustomRadio>
     </RadioGroup>
   );
 }
