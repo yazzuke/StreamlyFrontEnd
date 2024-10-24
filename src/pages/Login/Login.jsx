@@ -18,7 +18,7 @@ const Login = () => {
       id="login"
     >
       <Header />
-      <div className="container relative bg-gray-900 rounded-lg py-8 mb-[6.9rem] w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4">
+      <div className="container relative rounded-lg py-8 mb-[6.9rem] w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4">
         <AuthForm
           title="Iniciar Sesión"
           fields={loginFormFields}
@@ -29,9 +29,12 @@ const Login = () => {
           onSubmit={() => {
             // Lógica del login
           }}
+          
         />
-              <GoogleLoginButton  />
+        
+        <GoogleLoginButton  />
       </div>
+      
     </Section>
   );
 };

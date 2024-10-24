@@ -7,17 +7,13 @@ import ClipPath from "../../assets/svg/ClipPath";
 
 const Benefits = () => {
   return (
-    <Section id="features"
-    
-    >
-      <div className="container relative z-2 -mt-[3rem]">
-
-        <Heading
-          className="md:max-w-md lg:max-w-2xl"
-          title="Adquiera el servicio de streaming que desee con rapidez y sin complicaciones"
-          tag= "Streamly siempre disponible para ti"
-        />
-
+    <Section id="features">
+    <div className="container relative z-2 -mt[6rem] md:-mt-[7rem]">
+      <Heading
+        className="md:max-w-md lg:max-w-2xl mb-10 md:mb-20"
+        title="Adquiera el servicio de streaming que desee con rapidez y sin complicaciones"
+        tag="Streamly siempre disponible para ti"
+      />
         <div className="flex flex-wrap gap-10 mb-10">
           {benefits.map((item) => (
             <div

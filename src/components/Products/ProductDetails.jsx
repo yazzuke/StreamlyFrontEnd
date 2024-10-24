@@ -13,21 +13,20 @@ export default function ProductDetails({ product, isCombo }) {
   return (
     <div className="flex flex-col md:flex-row flex-wrap justify-center items-start w-full max-w-7xl mx-auto px-4 md:px-0 py-12">
       <Header />
-      <div className="w-full md:w-1/2 md:mb-0">
+      <div className="w-full md:w-1/2 md:mb-0 flex justify-center">
         <Image
           alt="img"
-          className="rounded-xl"
+          className="rounded-xl h-[400px] md:h-[700px]" 
           src={product.imageUrl}
           isBlurred
           isZoomed
-          height={650}
         />
       </div>
       <div className="flex flex-col justify-center w-full md:w-1/2 space-y-4 md:space-x-10 mt-[-2.5rem] md:pl-8 sm:mt-[-2.5rem]">
-        <h4 className="font-bold text-4xl md:text-6xl p-4 md:p-9 text-center md:text-left mb-2 md:mb-[-3rem]">
+        <h4 className="font-bold text-4xl md:text-6xl p-4 md:p-9 text-center md:text-left mb-2 md:mb-[-3rem] mt-16 md:mt-0">
           {product.title}
         </h4>
-        <p className="text-3xl md:text-3xl uppercase font-bold text-center md:text-left text-green-600 mt-0">
+        <p className="text-3xl md:text-3xl uppercase font-bold text-center md:text-left text-green-600 mt-[-1rem] md:mt-2">
           ${product.price}
         </p>
 

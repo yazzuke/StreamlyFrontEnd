@@ -2,17 +2,19 @@ import Header from "../../components/Header/Header";
 import Accounts from "../../components/Products/Accounts";
 import ComboAccounts from "../../components/Products/ComboAccounts";
 
-
 const Products = () => {
   return (
     <>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-
         <Header />
-        <Accounts className/>
-        <div className="py-12">
+        <h2 className="text-2xl font-bold mb-4 text-center lg:text-left px-4 lg:px-36">
+          Cuentas disponibles
+        </h2>
+        <Accounts />
+        <h2 className="text-2xl font-bold mb-4 text-center lg:text-left px-4 lg:px-36 py-4">
+          Combos disponibles
+        </h2>
         <ComboAccounts />
-      </div>
       </div>
     </>
   );

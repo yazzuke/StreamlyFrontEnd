@@ -17,7 +17,7 @@ const Register = () => {
       id="login"
     >
       <Header />
-      <div className="container relative bg-slate-800 rounded-lg py-8 mb-[4.8rem] w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4">
+      <div className="container relative  rounded-lg py-8 mb-[4.8rem] w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4">
         <AuthForm
           title="Registrate"
           fields={RegisterFormFields}

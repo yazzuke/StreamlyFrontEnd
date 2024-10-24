@@ -271,7 +271,54 @@ export const ComboInfo = [
         { svg: applemusicsvg },
       ]
     },
- 
+
+  {
+    id: "2",
+    title: "Combo Premium Plus",
+    duration: "1 Mes",
+    price: "44900",
+    imageUrl: disneyplus,
+    description:
+      "El Combo Premium Plus es la opción definitiva para los amantes del entretenimiento, ofreciendo acceso a las plataformas más populares y exclusivas. Con este combo, puedes disfrutar de Netflix, Spotify, Disney+ y HBO Max, todo en un solo lugar. Ideal para aquellos que buscan una experiencia completa de entretenimiento, el Combo Premium Plus te brinda acceso ilimitado a una amplia variedad de contenido en video y música. Disfruta de películas, series, música y más con este combo premium.",
+      items: [
+        { svg: netflixsvg },
+        { svg: spotifysvg },
+        { svg: paramountplussvg},
+        { svg: disneyplussvg },
+        { svg: primevideosvg },
+      ]
+  },
+  {
+    id: "3",
+    title: "Combo Esencial",
+    duration: "1 Mes",
+    price: "24900",
+    imageUrl: primevideo,
+    description:
+      "El Combo Esencial es la opción perfecta para aquellos que buscan una selección equilibrada de entretenimiento, ofreciendo acceso a plataformas como Spotify, Amazon Prime Video y Apple Music. Con este combo, puedes disfrutar de una amplia variedad de música y contenido en video, todo en un solo lugar. Ideal para aquellos que buscan una experiencia completa de entretenimiento, el Combo Esencial te brinda acceso ilimitado a tus plataformas favoritas a un precio accesible. Disfruta de música, películas, series y más con este combo esencial.", 
+      items: [
+        { svg: crunchyrollsvg },
+        { svg: maxsvg },
+        { svg: applemusicsvg },
+      ]
+  },
+  {
+    id: "4",
+    title: "Combo Premium",
+    duration: "1 Mes",
+    price: "39900",
+    imageUrl: netflix,
+    description:
+      "El Combo Premium te brinda acceso a las plataformas más populares de entretenimiento, incluyendo Netflix, Spotify y Disney+. Con este combo, puedes disfrutar de una amplia variedad de contenido en video y música, todo en un solo lugar. Ideal para aquellos que buscan una experiencia completa de entretenimiento, el Combo Premium te ofrece acceso ilimitado a tus plataformas favoritas a un precio insuperable. Disfruta de películas, series, música y más con este combo exclusivo.",
+      items: [
+        { svg: netflixsvg },
+        { svg: spotifysvg },
+        { svg: paramountplussvg},
+        { svg: disneyplussvg },
+        { svg: primevideosvg },
+      ]
+    },
+
 ];
 
 //Constastes para footer

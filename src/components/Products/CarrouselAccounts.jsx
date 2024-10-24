@@ -40,7 +40,6 @@ const CarrouselAccounts = () => {
             <Card
               isHoverable
               className="m-2 cursor-pointer"
-
             >
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 <h4 className="font-bold text-large">{item.title}</h4>
