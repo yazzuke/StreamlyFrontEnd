@@ -1,28 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { Card, CardHeader, CardBody, Image, Button, Select, SelectItem, Tooltip} from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
-import { AccountsInfo } from "../../constants";
+import { fetchAllAccounts } from "../../utils/api"; // Importamos la función del archivo api.js
 
-
-// Renderiza las cards de cada tipo de cuenta
 const Account = () => {
   const navigate = useNavigate();
+  const [accounts, setAccounts] = useState([]);
+
+  // Llamada al backend para obtener las cuentas disponibles
+  useEffect(() => {
+    const getAccounts = async () => {
+      const accountsData = await fetchAllAccounts();
+      setAccounts(accountsData);
+    };
+    getAccounts();
+  }, []);
 
   const handleCardClick = (id) => {
     navigate(`/accounts/${id}`);
   };
 
   return (
-    <div className="flex flex-wrap justify-center space-x-2 md:space-x-5  ">
-      <div></div>
-      {AccountsInfo.map((item) => (
+    <div className="flex flex-wrap justify-center space-x-2 md:space-x-5">
+      {accounts.map((item) => (
         <ProductCard
           key={item.id}
           id={item.id}
-          title={item.title}
-          price={item.price}
-          duration={item.duration}
+          title={item.serviceName}
+          price={item.lowestPrice}
           imageUrl={item.imageUrl}
           onClick={() => handleCardClick(item.id)}
         />
