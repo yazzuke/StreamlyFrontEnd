@@ -1,11 +1,13 @@
 import { RadioGroup, Radio, cn } from "@nextui-org/react";
-import { useState } from "react";
 
-// Componente CustomRadio ajustado
-export const CustomRadio = ({ children, ...props }) => {
+
+// Componente que renderiza el radio button de los meses de duración de la cuenta
+export const CustomRadio = (props) => {
+  const { children, ...otherProps } = props;
+
   return (
     <Radio
-      {...props}
+      {...otherProps}
       classNames={{
         base: cn(
           "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
@@ -19,19 +21,16 @@ export const CustomRadio = ({ children, ...props }) => {
   );
 };
 
-// Componente RadioGroupMonthsAccounts actualizado
-export default function RadioGroupMonthsAccounts({ selectedMonth, setSelectedMonth }) {
+export default function App() {
   return (
     <RadioGroup
-      label="¿Cuánto quieres que dure?"
+      label="Cuanto quieres que dure?"
       orientation="horizontal"
-      description="Entre más meses, mejor precio."
-      value={selectedMonth} // Usar el estado seleccionado
-      onValueChange={setSelectedMonth} // Usar onValueChange para actualizar el estado
+      description="Entre mas meses, mejor precio."
     >
       <CustomRadio value="1">1 Mes</CustomRadio>
-      <CustomRadio value="3">3 Meses</CustomRadio>
-      <CustomRadio value="6">6 Meses</CustomRadio>
+      <CustomRadio value="2">3 Meses</CustomRadio>
+      <CustomRadio value="3">6 Meses</CustomRadio>
     </RadioGroup>
   );
 }

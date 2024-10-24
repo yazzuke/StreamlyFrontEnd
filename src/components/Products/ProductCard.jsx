@@ -12,7 +12,7 @@ const ProductCard = ({ id, title, price, duration, imageUrl, onClick }) => {
           <h4 className="font-bold text-large">{title}</h4>
           <div className="flex items-center space-x-2">
             <p className="text-base uppercase font-bold text-green-500">${price}</p>
-            <p className="text-base uppercase font-bold">1 mes</p>
+            <p className="text-base uppercase font-bold">{duration}</p>
           </div>
         </CardHeader>
         <CardBody className="overflow-visible py-2 flex justify-center items-center">

@@ -1,24 +1,17 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { AccountsInfo } from "../../constants"; 
 import ProductDetails from "./ProductDetails";
-import { fetchAccountById } from "../../utils/api"; // Importamos la función del archivo api.js
 
+
+   // Componente que renderiza la estructura de la CUENTA / PRODUCTO seleccionada y lo muestra individualmente en la página
 export default function AccountsDetails() {
   const { id } = useParams();
-  const [account, setAccount] = useState(null);
-
-  // Usamos useEffect para obtener los datos de la cuenta por su id
-  useEffect(() => {
-    const getAccount = async () => {
-      const accountData = await fetchAccountById(id);
-      setAccount(accountData);
-    };
-    getAccount();
-  }, [id]);
-
-  if (!account) {
-    return <div>Cargando...</div>; // Loading state mientras los datos se obtienen
-  }
+    window.scrollTo({
+      top: 0, 
+      behavior: "smooth", 
+    });
+  const account = AccountsInfo.find((item) => item.id === id);
 
   return <ProductDetails product={account} />;
 }
+
