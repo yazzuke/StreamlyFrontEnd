@@ -6,7 +6,8 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ComboDetails from "../../components/Products/ComboDetails";
 import AccountsDetails from "../../components/Products/AccountDetails";
-import { path } from "framer-motion/client";
+import Admin from "../Admin/Admin";
+
 
 const routes = [
   { path: "/", element: <Home /> },
@@ -16,6 +17,7 @@ const routes = [
   { path: "/register", element: <Register /> },
   { path: "/accounts/:id", element: <AccountsDetails /> },
   { path: "/combos/:id", element: <ComboDetails /> },
+  { path: "/admin", element: <Admin /> },
   
   
 ];
