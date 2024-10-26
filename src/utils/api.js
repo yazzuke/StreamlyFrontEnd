@@ -107,7 +107,7 @@ export const fetchAllAdminProducts = async () => {
   }
 };
 
-// funcion para obtener los detalles de un producto por su id
+// funcion  para actualizar un producto en la base de datos
 export const updateProduct = async (id, updatedProduct) => {
   try {
     const response = await fetch(`${API_URL}/admin/products/${id}`, {
@@ -125,6 +125,45 @@ export const updateProduct = async (id, updatedProduct) => {
     return await response.json();
   } catch (error) {
     console.error(error);
+    throw error;
+  }
+};
+
+
+export const fetchServiceMetadata = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/metadata/services`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching service metadata:", error);
+    throw error;
+  }
+};
+
+// Crear una nueva cuenta basada en el metadata seleccionado
+// Crear una nueva cuenta basada en service metadata
+export const createAccount = async (newAccountData) => {
+  try {
+    const response = await axios.post(`${API_URL}/accounts`, newAccountData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating account:", error);
+    throw error;
+  }
+};
+
+
+// Crear un nuevo precio para una cuenta
+export const createAccountPrice = async (accountId, priceData) => {
+  try {
+    const response = await axios.post(`${API_URL}/accounts/${accountId}/prices`, priceData);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating account price:", error);
     throw error;
   }
 };
