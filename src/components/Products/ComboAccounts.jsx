@@ -1,5 +1,4 @@
 import ProductCard from './ProductCard';
-import { ComboInfo } from "../../constants/index";
 import { useNavigate } from "react-router-dom";
 import { getAllCombos } from "../../utils/api";
 import { useEffect, useState } from "react";

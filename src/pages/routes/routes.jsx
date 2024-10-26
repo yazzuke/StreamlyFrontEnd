@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import ComboDetails from "../../components/Products/ComboDetails";
 import AccountsDetails from "../../components/Products/AccountDetails";
+import ProductsAdmin from "../Admin/ProductsAdmin";
 import Admin from "../Admin/Admin";
 
 
@@ -18,6 +19,7 @@ const routes = [
   { path: "/accounts/:id", element: <AccountsDetails /> },
   { path: "/combos/:id", element: <ComboDetails /> },
   { path: "/admin", element: <Admin /> },
+  { path: "/admin-products", element: <ProductsAdmin /> },
   
   
 ];

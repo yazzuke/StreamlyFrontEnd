@@ -106,3 +106,25 @@ export const fetchAllAdminProducts = async () => {
     return [];
   }
 };
+
+// funcion para obtener los detalles de un producto por su id
+export const updateProduct = async (id, updatedProduct) => {
+  try {
+    const response = await fetch(`${API_URL}/admin/products/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedProduct),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error actualizando producto con id ${id}: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

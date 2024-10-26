@@ -32,30 +32,10 @@ import telegram from "./socials/telegram.svg";
 import twitter from "./socials/twitter.svg";
 import github from "./socials/github.svg";
 
-
-// Imagenes para productos
-import netflix from "./Accounts/netflix.jpg"
-import spotify from "./Accounts/spotify.jpg"
-import max from "./Accounts/max.jpg"
-import disneyplus from "./Accounts/disney.jpg"
-import primevideo from "./Accounts/primevideo.png"
-import applemusic from "./Accounts/applemusic.jpg"
-import crunchyroll from "./Accounts/crunchyroll.jpg"
-import paramountplus from "./Accounts/paramountplus.jpg"
-import vix from "./Accounts/vix.jpg"
-import youtubepremium from "./Accounts/youtubepremium.png"
-
-
-//SVG para combos.
-import netflixsvg from "../assets/Combos/netflix.svg"
-import applemusicsvg from "../assets/Combos/applemusic.svg"
-import crunchyrollsvg from "../assets/Combos/crunchyroll.svg"
-import maxsvg from "../assets/Combos/max.svg"
-import paramountplussvg from "../assets/Combos/paramountplus.svg"
-import primevideosvg from "../assets/Combos/primevideo.svg"
-import spotifysvg from "../assets/Combos/spotifywordmark.svg"
-import ytmusicsvg from "../assets/Combos/youtubemusicwhite.svg"
-import disneyplussvg from "../assets/Combos/disney+svg.svg"
+import commmunity from "../assets/community.svg";
+import db from "../assets/db.svg";
+import users from "../assets/users.svg";
+import stats from "../assets/stats.svg";
 
 
 export {
@@ -83,24 +63,9 @@ export {
   telegram,
   twitter,
   github,
-  netflix,
-  spotify,
-  disneyplus,
-  max,
-  primevideo,
-  applemusic,
-  crunchyroll,
-  paramountplus,
-  vix,
-  youtubepremium,
-  netflixsvg,
-  ytmusicsvg,
-  maxsvg,
-  paramountplussvg,
-  spotifysvg,
-  primevideosvg,
-  crunchyrollsvg,
-  disneyplussvg,
-  applemusicsvg,
-  googlesvg
+  googlesvg,
+  commmunity,
+  db,
+  users,
+  stats
 };
