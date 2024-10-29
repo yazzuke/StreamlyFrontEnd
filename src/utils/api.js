@@ -2,36 +2,24 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/streamly";
 
-// Función para obtener el precio de una cuenta por su id, meses y tipo
+// Función para obtener el precio de una cuenta en base a su ID, meses y tipo
 export const fetchPrice = async (accountId, months, type) => {
   try {
-    const response = await fetch(
-      `http://localhost:8080/streamly/accounts/${accountId}/price?months=${months}&type=${type}`
-    );
-    const data = await response.json();
-
-    if (data && data.price) {
-      return data.price;
-    } else {
-      return null;
-    }
+    const response = await axios.get(`${API_URL}/accounts/${accountId}/price`, {
+      params: { months, type },
+    });
+    return response.data?.price || null;
   } catch (error) {
     console.error("Error al obtener el precio:", error);
     return null;
   }
 };
 
-// Función para obtener los detalles de una cuenta por su id
+// Función para obtener los detalles de una cuenta en base a su ID
 export const fetchAccountById = async (id) => {
   try {
-    const response = await fetch(
-      `http://localhost:8080/streamly/accounts/${id}`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
+    const response = await axios.get(`${API_URL}/accounts/${id}`);
+    return response.data;
   } catch (error) {
     console.error("Error al obtener los detalles de la cuenta:", error);
     return null;
@@ -41,18 +29,15 @@ export const fetchAccountById = async (id) => {
 // Función para obtener todas las cuentas disponibles
 export const fetchAllAccounts = async () => {
   try {
-    const response = await fetch("http://localhost:8080/streamly/accounts");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
+    const response = await axios.get(`${API_URL}/accounts`);
+    return response.data;
   } catch (error) {
     console.error("Error al obtener las cuentas:", error);
     return [];
   }
 };
 
+// Función para obtener todos los combos disponibles
 export const getAllCombos = async () => {
   try {
     const response = await axios.get(`${API_URL}/combos`);
@@ -63,6 +48,7 @@ export const getAllCombos = async () => {
   }
 };
 
+// Función para obtener un combo específico en base a su ID
 export const getComboById = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/combos/${id}`);
@@ -73,8 +59,7 @@ export const getComboById = async (id) => {
   }
 };
 
-
-// Función para obtener todos los precios de un combo específico
+// Función para obtener los precios de un combo específico
 export const fetchComboPrices = async (comboId) => {
   try {
     const response = await axios.get(`${API_URL}/combos/${comboId}/prices`);
@@ -85,7 +70,7 @@ export const fetchComboPrices = async (comboId) => {
   }
 };
 
-
+// Función para obtener todos los productos disponibles
 export const fetchAllProducts = async () => {
   try {
     const response = await axios.get(`${API_URL}/allproducts`);
@@ -96,7 +81,7 @@ export const fetchAllProducts = async () => {
   }
 };
 
-// Función para obtener todos los productos para el admin
+// Función para obtener todos los productos disponibles para el administrador
 export const fetchAllAdminProducts = async () => {
   try {
     const response = await axios.get(`${API_URL}/admin/products`);
@@ -107,41 +92,33 @@ export const fetchAllAdminProducts = async () => {
   }
 };
 
-// funcion  para actualizar un producto en la base de datos
+// Función para actualizar un producto existente en la base de datos
 export const updateProduct = async (id, updatedProduct) => {
   try {
-    const response = await fetch(`${API_URL}/admin/products/${id}`, {
-      method: 'PATCH',
+    const response = await axios.patch(`${API_URL}/admin/products/${id}`, updatedProduct, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedProduct),
     });
-
-    if (!response.ok) {
-      throw new Error(`Error actualizando producto con id ${id}: ${response.statusText}`);
-    }
-
-    return await response.json();
+    return response.data;
   } catch (error) {
-    console.error(error);
+    console.error(`Error actualizando producto con id ${id}:`, error);
     throw error;
   }
 };
 
-
+// Función para obtener metadatos de servicios
 export const fetchServiceMetadata = async () => {
   try {
     const response = await axios.get(`${API_URL}/metadata/services`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching service metadata:", error);
+    console.error("Error al obtener los metadatos del servicio:", error);
     throw error;
   }
 };
 
-
-// Crear una nueva cuenta basada en service metadata
+// Función para crear una nueva cuenta usando metadatos de servicios
 export const createAccount = async (newAccountData) => {
   try {
     const response = await axios.post(`${API_URL}/accounts`, newAccountData, {
@@ -151,24 +128,23 @@ export const createAccount = async (newAccountData) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error creating account:", error);
+    console.error("Error al crear una nueva cuenta:", error);
     throw error;
   }
 };
 
-
-// Crear un nuevo precio para una cuenta
+// Función para crear un nuevo precio para una cuenta específica
 export const createAccountPrice = async (accountId, priceData) => {
   try {
     const response = await axios.post(`${API_URL}/accounts/${accountId}/prices`, priceData);
     return response.data;
   } catch (error) {
-    console.error("Error creating account price:", error);
+    console.error("Error al crear precio para la cuenta:", error);
     throw error;
   }
 };
 
-// Crear un nuevo combo
+// Función para crear un nuevo combo
 export const createCombo = async (newComboData) => {
   try {
     const response = await axios.post(`${API_URL}/combos`, newComboData, {
@@ -178,13 +154,12 @@ export const createCombo = async (newComboData) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error creando combo:", error);
+    console.error("Error al crear el combo:", error);
     throw error;
   }
 };
 
-
-// Crear un nuevo precio para un combo
+// Función para crear un nuevo precio para un combo específico
 export const createComboPrice = async (comboId, priceData) => {
   try {
     const response = await axios.post(`${API_URL}/combos/${comboId}/prices`, priceData, {
@@ -194,7 +169,7 @@ export const createComboPrice = async (comboId, priceData) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error creando precio para el combo:", error);
+    console.error("Error al crear precio para el combo:", error);
     throw error;
   }
 };
