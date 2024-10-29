@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/streamly";
+const API_URL = "https://streamlyback.sfo1.zeabur.app/streamly";
 
 // Función para obtener el precio de una cuenta en base a su ID, meses y tipo
 export const fetchPrice = async (accountId, months, type) => {
