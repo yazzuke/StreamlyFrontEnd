@@ -3,16 +3,25 @@ import CardAdmin from "../../components/Admin/AdminProductCard";
 import Header from "../../components/Header/Header";
 import { Button } from "@nextui-org/react";
 import AddAccountModal from "../../components/Admin/AddAccountModal";
+import CreateComboModal from "../../components/Admin/CreateComboModal";
 import { useDisclosure } from "@nextui-org/react";
 import { useState } from "react";
-import { fetchAllAccounts } from "../../utils/api";
+
 
 const ProductsAdmin = () => {
-  const { isOpen, onOpenChange } = useDisclosure();
+  const { isOpen: isAddAccountModalOpen, onOpenChange: onAddAccountModalOpenChange } = useDisclosure();
+  const { isOpen: isCreateComboModalOpen, onOpenChange: onCreateComboModalOpenChange } = useDisclosure();
+
   const [products, setProducts] = useState([]);
 
+  // Manejar la adición de un nuevo producto
   const handleAddProduct = (newProduct) => {
     setProducts([...products, newProduct]);
+  };
+
+  // Manejar la creación de un nuevo combo
+  const handleComboCreated = (newCombo) => {
+    setProducts([...products, newCombo]);
   };
 
   return (
@@ -24,15 +33,31 @@ const ProductsAdmin = () => {
       <p className="text-center text-lg mb-10">
         Aquí podrás gestionar los productos que quiera mostrar en su tienda.
       </p>
-      <div className="flex justify-center mb-6">
-        <Button color="primary" onPress={() => onOpenChange(true)}>
+      <div className="flex justify-center mb-6 gap-4">
+        <Button color="success" variant="shadow" size="lg" onPress={() => onAddAccountModalOpenChange(true)}>
           Agregar Nuevo Servicio
+        </Button>
+        <Button color="primary" variant="shadow" size="lg" onPress={() => onCreateComboModalOpenChange(true)}>
+          Crear Nuevo Combo
         </Button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
         <CardAdmin />
       </div>
-      <AddAccountModal isOpen={isOpen} onOpenChange={onOpenChange} onSave={handleAddProduct} />
+
+      {/* Modal para agregar una nueva cuenta */}
+      <AddAccountModal 
+        isOpen={isAddAccountModalOpen} 
+        onOpenChange={onAddAccountModalOpenChange} 
+        onSave={handleAddProduct} 
+      />
+
+      {/* Modal para crear un nuevo combo */}
+      <CreateComboModal 
+        isOpen={isCreateComboModalOpen} 
+        onOpenChange={onCreateComboModalOpenChange} 
+        onComboCreated={handleComboCreated} 
+      />
     </Section>
   );
 };

@@ -140,7 +140,7 @@ export const fetchServiceMetadata = async () => {
   }
 };
 
-// Crear una nueva cuenta basada en el metadata seleccionado
+
 // Crear una nueva cuenta basada en service metadata
 export const createAccount = async (newAccountData) => {
   try {
@@ -164,6 +164,37 @@ export const createAccountPrice = async (accountId, priceData) => {
     return response.data;
   } catch (error) {
     console.error("Error creating account price:", error);
+    throw error;
+  }
+};
+
+// Crear un nuevo combo
+export const createCombo = async (newComboData) => {
+  try {
+    const response = await axios.post(`${API_URL}/combos`, newComboData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creando combo:", error);
+    throw error;
+  }
+};
+
+
+// Crear un nuevo precio para un combo
+export const createComboPrice = async (comboId, priceData) => {
+  try {
+    const response = await axios.post(`${API_URL}/combos/${comboId}/prices`, priceData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creando precio para el combo:", error);
     throw error;
   }
 };

@@ -12,75 +12,92 @@ import { fetchAllAdminProducts } from "../../utils/api";
 import EditProductInfoModal from "./EditProductInfoModal";
 
 export default function AdminProductCard() {
-  const [products, setProducts] = useState([]);
+  const [accounts, setAccounts] = useState([]);
+  const [combos, setCombos] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProductType, setSelectedProductType] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getAllProducts = async () => {
       const response = await fetchAllAdminProducts();
-      setProducts(response);
+      console.log("Response completa:", response);
+      
+      // Filtrar cuentas y combos en función de si tienen 'serviceName' o 'name'
+      const accountsData = response.filter((product) => product.serviceName);
+      const combosData = response.filter((product) => product.name);
+
+      console.log("Cuentas filtradas:", accountsData);
+      console.log("Combos filtrados:", combosData);
+
+      setAccounts(accountsData);
+      setCombos(combosData);
     };
     getAllProducts();
   }, []);
 
-  const handleSaveProduct = (updatedProduct) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === updatedProduct.id ? updatedProduct : product
-      )
-    );
+  const handleSaveProduct = (updatedProduct, type) => {
+    if (type === "account") {
+      setAccounts((prevAccounts) =>
+        prevAccounts.map((account) =>
+          account.id === updatedProduct.id ? updatedProduct : account
+        )
+      );
+    } else if (type === "combo") {
+      setCombos((prevCombos) =>
+        prevCombos.map((combo) =>
+          combo.id === updatedProduct.id ? updatedProduct : combo
+        )
+      );
+    }
     setIsModalOpen(false);
   };
 
-  const handleEditClick = (product) => {
+  const handleEditClick = (product, type) => {
     setSelectedProduct(product);
+    setSelectedProductType(type);
     setIsModalOpen(true);
   };
 
   return (
     <div className="flex flex-wrap justify-center gap-8 p-4">
-      {products.map((product, index) => (
-      <Card
-      key={`${product.id}-${index}`} 
-      className="max-w-[400px] max-h-[50rem] border border-default-200 shadow-lg"
-    >
+      {accounts.map((account) => (
+        <Card
+          key={`account-${account.id}`}
+          className="max-w-[400px] max-h-[50rem] border border-default-200 shadow-lg"
+        >
           <CardHeader className="flex gap-2 items-center p-2">
             <Image
-              src={product.svgUrl || "https://via.placeholder.com/60"}
+              src={account.svgUrl || "https://via.placeholder.com/60"}
               alt="Producto"
               width={60}
               height={60}
               className="rounded-lg"
             />
             <div className="flex flex-col">
-              <p className="text-lg font-semibold">
-                {product.serviceName || product.name}
-              </p>
-              <p className="text-xs text-default-500">
-                {product.serviceName ? "Cuenta" : "Combo"}
-              </p>
+              <p className="text-lg font-semibold">{account.serviceName}</p>
+              <p className="text-xs text-default-500">Cuenta</p>
             </div>
           </CardHeader>
           <Divider />
           <CardBody className="p-2">
             <div className="mb-1">
               <p className="text-md font-bold mb-1 ">Descripción:</p>
-              <p className="text-sm text-justify">{product.description}</p>
+              <p className="text-sm text-justify">{account.description}</p>
             </div>
             <Divider className="my-2" />
             <div>
               <p className="text-lg font-bold mb-2">Precios Actuales</p>
-              {product.prices.length > 0 ? (
+              {account.prices?.length > 0 ? (
                 <>
                   <div className="mt-2">
-                    {product.prices.some(
+                    {account.prices.some(
                       (price) => price.type === "Pantalla"
                     ) && (
                       <>
                         <p className="text-md font-bold">Pantalla:</p>
                         <ul className="list-disc list-inside text-sm font-semibold">
-                          {product.prices
+                          {account.prices
                             .filter((price) => price.type === "Pantalla")
                             .map((price, index) => (
                               <li key={index}>
@@ -91,13 +108,13 @@ export default function AdminProductCard() {
                       </>
                     )}
                     <Divider className="my-1" />
-                    {product.prices.some(
+                    {account.prices.some(
                       (price) => price.type === "Completa"
                     ) && (
                       <>
                         <p className="text-md font-bold mt-2">Completa:</p>
                         <ul className="list-disc list-inside font-semibold text-sm">
-                          {product.prices
+                          {account.prices
                             .filter((price) => price.type === "Completa")
                             .map((price, index) => (
                               <li key={index}>
@@ -123,7 +140,96 @@ export default function AdminProductCard() {
               flat
               color="warning"
               className="flex items-center gap-2"
-              onPress={() => handleEditClick(product)}
+              onPress={() => handleEditClick(account, "account")}
+            >
+              Editar
+            </Button>
+            <Button color="error" className="flex items-center gap-2">
+              Eliminar
+            </Button>
+          </CardFooter>
+        </Card>
+      ))}
+      {combos.map((combo) => (
+        <Card
+          key={`combo-${combo.id}`}
+          className="max-w-[400px] max-h-[50rem] border border-default-200 shadow-lg"
+        >
+          <CardHeader className="flex gap-2 items-center p-2">
+            <Image
+              src={combo.imageUrl || "https://via.placeholder.com/60"}
+              alt="Producto"
+              width={60}
+              height={60}
+              className="rounded-lg"
+            />
+            <div className="flex flex-col">
+              <p className="text-lg font-semibold">{combo.name}</p>
+              <p className="text-xs text-default-500">Combo</p>
+            </div>
+          </CardHeader>
+          <Divider />
+          <CardBody className="p-2">
+            <div className="mb-1">
+              <p className="text-md font-bold mb-1 ">Descripción:</p>
+              <p className="text-sm text-justify">{combo.description}</p>
+            </div>
+            <Divider className="my-2" />
+            <div>
+              <p className="text-lg font-bold mb-2">Precios Actuales</p>
+              {combo.prices?.length > 0 ? (
+                <>
+                  <div className="mt-2">
+                    {combo.prices.some(
+                      (price) => price.type === "Pantalla"
+                    ) && (
+                      <>
+                        <p className="text-md font-bold">Pantalla:</p>
+                        <ul className="list-disc list-inside text-sm font-semibold">
+                          {combo.prices
+                            .filter((price) => price.type === "Pantalla")
+                            .map((price, index) => (
+                              <li key={index}>
+                                {price.months} mes: ${price.price}
+                              </li>
+                            ))}
+                        </ul>
+                      </>
+                    )}
+                    <Divider className="my-1" />
+                    {combo.prices.some(
+                      (price) => price.type === "Completa"
+                    ) && (
+                      <>
+                        <p className="text-md font-bold mt-2">Completa:</p>
+                        <ul className="list-disc list-inside font-semibold text-sm">
+                          {combo.prices
+                            .filter((price) => price.type === "Completa")
+                            .map((price, index) => (
+                              <li key={index}>
+                                {price.months} mes: ${price.price}
+                              </li>
+                            ))}
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <p className="text-sm text-default-500">
+                  No hay precios disponibles.
+                </p>
+              )}
+            </div>
+          </CardBody>
+          <Divider />
+          <CardFooter className="flex justify-between items-center p-6">
+            <Button
+              auto
+              flat
+              color="warning"
+              className="flex items-center gap-2"
+              onPress={() => handleEditClick(combo, "combo")}
             >
               Editar
             </Button>
@@ -136,7 +242,10 @@ export default function AdminProductCard() {
       {selectedProduct && (
         <EditProductInfoModal
           product={selectedProduct}
-          onSave={handleSaveProduct}
+          type={selectedProductType}
+          onSave={(updatedProduct) =>
+            handleSaveProduct(updatedProduct, selectedProductType)
+          }
           isOpen={isModalOpen}
           onOpenChange={setIsModalOpen}
         />

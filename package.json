@@ -1,5 +1,5 @@
 {
-  "name": "brainwave",
+  "name": "streamly",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +12,6 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
     "axios": "^1.7.7",
-    "brainwave": "file:",
     "framer-motion": "^11.11.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,7 +19,8 @@
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.27.0",
     "react-toastify": "^10.0.6",
-    "scroll-lock": "^2.1.5"
+    "scroll-lock": "^2.1.5",
+    "streamly": "file:"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

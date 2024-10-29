@@ -10,8 +10,9 @@ import {
   Textarea
 } from "@nextui-org/react";
 import { updateProduct } from "../../utils/api";
+import {showSuccessToast, showErrorToast} from "../../utils/toastNotification";
 
-export default function EditProductInfoModal({ product, onSave, isOpen, onOpenChange }) {
+export default function EditProductInfoModal({ product, type, onSave, isOpen, onOpenChange }) {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
@@ -40,16 +41,23 @@ export default function EditProductInfoModal({ product, onSave, isOpen, onOpenCh
 
   const handleSave = async () => {
     try {
-      const isAccount = formData.serviceName ? true : false;
       const updatedProduct = {
-        type: isAccount ? "account" : "combo",
-        [isAccount ? "account" : "combo"]: formData
+        type: type === "account" ? "account" : "combo",
+        [type === "account" ? "account" : "combo"]: {
+          ...formData,
+          prices: formData.prices.map((price) => ({
+            ...price,
+            price: parseFloat(price.price), // Asegurar que el precio es un número
+          })),
+        },
       };
       await updateProduct(formData.id, updatedProduct);
       onSave(formData);
+      showSuccessToast("Info Actualizada Correctamente");
       onOpenChange(false);
     } catch (error) {
       console.error("Error actualizando el producto:", error);
+      showErrorToast("Error al actualizar el producto"); 
     }
   };
 
@@ -70,7 +78,7 @@ export default function EditProductInfoModal({ product, onSave, isOpen, onOpenCh
               <div className="flex flex-col gap-4">
                 <Input
                   label="Nombre"
-                  name="serviceName"
+                  name={type === "account" ? "serviceName" : "name"}
                   value={formData.serviceName || formData.name || ""}
                   onChange={handleInputChange}
                   fullWidth
@@ -89,13 +97,15 @@ export default function EditProductInfoModal({ product, onSave, isOpen, onOpenCh
                   onChange={handleInputChange}
                   fullWidth
                 />
-                <Input
-                  label="URL de SVG"
-                  name="svgUrl"
-                  value={formData.svgUrl || ""}
-                  onChange={handleInputChange}
-                  fullWidth
-                />
+                {type === "account" && (
+                  <Input
+                    label="URL de SVG"
+                    name="svgUrl"
+                    value={formData.svgUrl || ""}
+                    onChange={handleInputChange}
+                    fullWidth
+                  />
+                )}
                 <h4 className="text-lg font-bold">Precios:</h4>
                 {formData.prices && formData.prices.length > 0 && (
                   <>

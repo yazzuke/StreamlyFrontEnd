@@ -83,8 +83,8 @@ export default function AddAccountModal({ isOpen, onOpenChange, onSave }) {
       for (const price of prices) {
         await createAccountPrice(createdAccount.id, price);
       }
-      onSave(createdAccount); // Notify parent that the account has been created
-      onOpenChange(false); // Close modal
+      onSave(createdAccount);
+      onOpenChange(false); 
       showSuccessToast("Precios guardados exitosamente");
     } catch (error) {
       console.error("Error saving prices:", error);
