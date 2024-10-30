@@ -2,6 +2,7 @@ import Section from "../../components/Section";
 import CardAdmin from "../../components/Admin/AdminProductCard"
 import PanelAdmin from "../../components/Admin/PanelAdmin";
 import Header from "../../components/Header/Header";
+
 const Admin = () => {
   return (
 

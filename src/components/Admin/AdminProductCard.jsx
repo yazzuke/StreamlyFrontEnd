@@ -8,7 +8,11 @@ import {
   Button,
   Image,
 } from "@nextui-org/react";
-import { fetchAllAdminProducts } from "../../utils/api";
+import {
+  fetchAllAdminProducts,
+  deleteAccountById,
+  deleteComboById,
+} from "../../utils/api";
 import EditProductInfoModal from "./EditProductInfoModal";
 
 export default function AdminProductCard() {
@@ -21,20 +25,34 @@ export default function AdminProductCard() {
   useEffect(() => {
     const getAllProducts = async () => {
       const response = await fetchAllAdminProducts();
-      console.log("Response completa:", response);
-      
+
       // Filtrar cuentas y combos en función de si tienen 'serviceName' o 'name'
       const accountsData = response.filter((product) => product.serviceName);
       const combosData = response.filter((product) => product.name);
-
-      console.log("Cuentas filtradas:", accountsData);
-      console.log("Combos filtrados:", combosData);
 
       setAccounts(accountsData);
       setCombos(combosData);
     };
     getAllProducts();
   }, []);
+
+  const handleDeleteAccount = async (accountId) => {
+    const success = await deleteAccountById(accountId);
+    if (success) {
+      setAccounts((prevAccounts) =>
+        prevAccounts.filter((account) => account.id !== accountId)
+      );
+    }
+  };
+
+  const handleDeleteCombo = async (comboId) => {
+    const success = await deleteComboById(comboId);
+    if (success) {
+      setCombos((prevCombos) =>
+        prevCombos.filter((combo) => combo.id !== comboId)
+      );
+    }
+  };
 
   const handleSaveProduct = (updatedProduct, type) => {
     if (type === "account") {
@@ -144,7 +162,11 @@ export default function AdminProductCard() {
             >
               Editar
             </Button>
-            <Button color="error" className="flex items-center gap-2">
+            <Button
+              color="error"
+              onPress={() => handleDeleteAccount(account.id)}
+              className="flex items-center gap-2"
+            >
               Eliminar
             </Button>
           </CardFooter>
@@ -233,7 +255,11 @@ export default function AdminProductCard() {
             >
               Editar
             </Button>
-            <Button color="error" className="flex items-center gap-2">
+            <Button
+              color="error"
+              className="flex items-center gap-2"
+              onPress={() => handleDeleteCombo(combo.id)}
+            >
               Eliminar
             </Button>
           </CardFooter>

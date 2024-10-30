@@ -4,9 +4,11 @@ import Footer from "../src/components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import routes from "../src/pages/routes/routes";
+import { AuthProvider } from "./context/AuthContext.jsx"; 
 
 const App = () => {
   return (
+    <AuthProvider> 
     <div className="dark pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
         <ToastContainer 
           position="top-center"
@@ -28,6 +30,7 @@ const App = () => {
       </Routes>
       <Footer />
     </div>
+    </AuthProvider>
   );
 };
 

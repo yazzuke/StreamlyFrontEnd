@@ -1,8 +1,12 @@
 import Header from "../../components/Header/Header";
 import Accounts from "../../components/Products/Accounts";
 import ComboAccounts from "../../components/Products/ComboAccounts";
+import { useAuth } from "../../context/AuthContext";
 
 const Products = () => {
+  const { token, user } = useAuth();
+  console.log(token);
+
   return (
     <>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">

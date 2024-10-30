@@ -49,13 +49,12 @@ export const navigation = [
   },
 ];
 
-//Constastes para Login
+// Constantes para Login
 export const loginFormFields = [
-  { type: "text", placeholder: "Email", variant: "underlined" },
-  { type: "password", placeholder: "Password", variant: "faded" },
+  { name: "email", type: "text", placeholder: "Email", variant: "underlined" },
+  { name: "password", type: "password", placeholder: "Password", variant: "faded" },
 ];
 
-//Constastes para Login
 export const loginButtonText = "Login";
 export const loginFooterText = "Restablecer contraseña";
 export const loginFooterLink = {
@@ -64,12 +63,12 @@ export const loginFooterLink = {
   linkText: "Register",
 };
 
-//Constastes para Register
+// Constantes para Register
 export const RegisterFormFields = [
-  { type: "text", placeholder: "Nombre" },
-  { type: "text", placeholder: "Email" },
-  { type: "password", placeholder: "Contraseña" },
-  { type: "password", placeholder: "Confirma tu contraseña" },
+  { name: "displayName", type: "text", placeholder: "Nombre" },
+  { name: "email", type: "text", placeholder: "Email" },
+  { name: "password", type: "password", placeholder: "Contraseña" },
+  { name: "confirmPassword", type: "password", placeholder: "Confirma tu contraseña" },
 ];
 
 export const RegisterButtonText = "Registrarse";
@@ -78,8 +77,6 @@ export const RegisterFooterLink = {
   href: "/login",
   linkText: "Inicia Sesión",
 };
-
-
 
 //Constastes para beneficios en Hero
 export const benefits = [

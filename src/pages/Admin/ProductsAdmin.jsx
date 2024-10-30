@@ -6,11 +6,16 @@ import AddAccountModal from "../../components/Admin/AddAccountModal";
 import CreateComboModal from "../../components/Admin/CreateComboModal";
 import { useDisclosure } from "@nextui-org/react";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+
 
 
 const ProductsAdmin = () => {
   const { isOpen: isAddAccountModalOpen, onOpenChange: onAddAccountModalOpenChange } = useDisclosure();
   const { isOpen: isCreateComboModalOpen, onOpenChange: onCreateComboModalOpenChange } = useDisclosure();
+
+  const { token, user } = useAuth();
+console.log(token, user);
 
   const [products, setProducts] = useState([]);
 
