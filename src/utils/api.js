@@ -8,12 +8,26 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
+const getToken = async () => {
+  let token = localStorage.getItem("token"); // Cambia a sessionStorage si prefieres
+  if (!token) {
+    const user = auth.currentUser;
+    if (user) {
+      token = await user.getIdToken(true);
+      localStorage.setItem("token", token);
+    }
+  }
+  return token;
+};
+
+// Configuración de axios para usar el token almacenado
 api.interceptors.request.use(
   async (config) => {
     const user = auth.currentUser;
     if (user) {
       const token = await user.getIdToken(true);
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`
+      console.log("Token enviado:", token);
     }
     return config;
   },
@@ -25,7 +39,7 @@ export default api;
 // Función para obtener el precio de una cuenta en base a su ID, meses y tipo
 export const fetchPrice = async (accountId, months, type) => {
   try {
-    const response = await axios.get(`${API_URL}/accounts/${accountId}/price`, {
+    const response = await api.get(`/accounts/${accountId}/price`, {
       params: { months, type },
     });
     return response.data?.price || null;
@@ -38,7 +52,7 @@ export const fetchPrice = async (accountId, months, type) => {
 // Función para obtener los detalles de una cuenta en base a su ID
 export const fetchAccountById = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/accounts/${id}`);
+    const response = await api.get(`/accounts/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener los detalles de la cuenta:", error);
@@ -49,7 +63,7 @@ export const fetchAccountById = async (id) => {
 // Función para obtener todas las cuentas disponibles
 export const fetchAllAccounts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/accounts`);
+    const response = await api.get(`/accounts`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener las cuentas:", error);
@@ -60,7 +74,7 @@ export const fetchAllAccounts = async () => {
 // Función para obtener todos los combos disponibles
 export const getAllCombos = async () => {
   try {
-    const response = await axios.get(`${API_URL}/combos`);
+    const response = await api.get(`/combos`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener los combos:", error);
@@ -71,7 +85,7 @@ export const getAllCombos = async () => {
 // Función para obtener un combo específico en base a su ID
 export const getComboById = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/combos/${id}`);
+    const response = await api.get(`/combos/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener el combo:", error);
@@ -82,7 +96,7 @@ export const getComboById = async (id) => {
 // Función para obtener los precios de un combo específico
 export const fetchComboPrices = async (comboId) => {
   try {
-    const response = await axios.get(`${API_URL}/combos/${comboId}/prices`);
+    const response = await api.get(`/combos/${comboId}/prices`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener los precios del combo:", error);
@@ -93,7 +107,7 @@ export const fetchComboPrices = async (comboId) => {
 // Función para obtener todos los productos disponibles
 export const fetchAllProducts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/allproducts`);
+    const response = await api.get(`/allproducts`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener los productos:", error);
@@ -115,8 +129,8 @@ export const fetchAllAdminProducts = async () => {
 // Función para actualizar un producto existente en la base de datos
 export const updateProduct = async (id, updatedProduct) => {
   try {
-    const response = await axios.patch(
-      `${API_URL}/admin/products/${id}`,
+    const response = await api.patch(
+      `/admin/products/${id}`,
       updatedProduct,
       {
         headers: {
@@ -134,7 +148,7 @@ export const updateProduct = async (id, updatedProduct) => {
 // Función para obtener metadatos de servicios
 export const fetchServiceMetadata = async () => {
   try {
-    const response = await axios.get(`${API_URL}/metadata/services`);
+    const response = await api.get(`/metadata/services`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener los metadatos del servicio:", error);
@@ -145,7 +159,7 @@ export const fetchServiceMetadata = async () => {
 // Función para crear una nueva cuenta usando metadatos de servicios
 export const createAccount = async (newAccountData) => {
   try {
-    const response = await axios.post(`${API_URL}/accounts`, newAccountData, {
+    const response = await api.post(`/accounts`, newAccountData, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -160,7 +174,7 @@ export const createAccount = async (newAccountData) => {
 // Función para eliminar una cuenta en base a su ID
 export const deleteAccountById = async (id) => {
   try {
-    await axios.delete(`${API_URL}/accounts/${id}`);
+    await api.delete(`/accounts/${id}`);
     console.log(`Cuenta con ID ${id} eliminada exitosamente.`);
     return true;
   } catch (error) {
@@ -172,8 +186,8 @@ export const deleteAccountById = async (id) => {
 // Función para crear un nuevo precio para una cuenta específica
 export const createAccountPrice = async (accountId, priceData) => {
   try {
-    const response = await axios.post(
-      `${API_URL}/accounts/${accountId}/prices`,
+    const response = await api.post(
+      `/accounts/${accountId}/prices`,
       priceData
     );
     return response.data;
@@ -186,7 +200,7 @@ export const createAccountPrice = async (accountId, priceData) => {
 // Función para crear un nuevo combo
 export const createCombo = async (newComboData) => {
   try {
-    const response = await axios.post(`${API_URL}/combos`, newComboData, {
+    const response = await api.post(`/combos`, newComboData, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -201,8 +215,8 @@ export const createCombo = async (newComboData) => {
 // Función para crear un nuevo precio para un combo específico
 export const createComboPrice = async (comboId, priceData) => {
   try {
-    const response = await axios.post(
-      `${API_URL}/combos/${comboId}/prices`,
+    const response = await api.post(
+      `/combos/${comboId}/prices`,
       priceData,
       {
         headers: {
@@ -220,11 +234,22 @@ export const createComboPrice = async (comboId, priceData) => {
 // Función para eliminar un combo en base a su ID
 export const deleteComboById = async (id) => {
   try {
-    await axios.delete(`${API_URL}/combos/${id}`);
+    await api.delete(`/combos/${id}`);
     console.log(`Combo con ID ${id} eliminado exitosamente.`);
     return true;
   } catch (error) {
     console.error(`Error al eliminar el combo con ID ${id}:`, error);
     return false;
+  }
+};
+
+// Función para obtener todos los stocks
+export const fetchAllStocks = async () => {
+  try {
+    const response = await api.get(`/stocks`);
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener los stocks:", error);
+    return [];
   }
 };

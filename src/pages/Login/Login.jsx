@@ -32,20 +32,33 @@ const Login = () => {
     try {
       const userCredential = await loginWithGoogle();
       const token = await userCredential.user.getIdToken();
-
-      console.log("Token:", token); 
-      // Sincronizar con el backend
-      await api.post("/users/register", {}, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      navigate("/");
+  
+      try {
+        // Intento de login primero
+        const response = await api.post("/users/login", {}, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log("Login exitoso:", response.data);
+      } catch (loginError) {
+        if (loginError.response && loginError.response.status === 401) {
+          console.log("Usuario no registrado. Registrando...");
+          // Solo registra si el usuario no está registrado
+          await api.post("/users/register", {}, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          console.log("Usuario registrado exitosamente");
+        } else {
+          throw loginError;
+        }
+      }
+  
+      navigate("/"); // Redirige después del login o registro exitoso
     } catch (err) {
       console.error("Error en el inicio de sesión con Google:", err);
       setError("Error al iniciar sesión con Google.");
     }
   };
-
+  
   return (
     <Section className="pt-[6rem] overflow-hidden" crosses customPaddings id="login">
       <Header />

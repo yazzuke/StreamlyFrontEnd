@@ -168,7 +168,7 @@ export const adminpanel = [
     id: "2",
     title: "Stock",
     iconUrl: users,
-    url: "#",
+    url: "/admin-stock",
   },
 
   {

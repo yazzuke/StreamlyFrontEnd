@@ -9,6 +9,7 @@ import AccountsDetails from "../../components/Products/AccountDetails";
 import ProductsAdmin from "../Admin/ProductsAdmin";
 import Admin from "../Admin/Admin";
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import StockAdmin from "../Admin/StockAdmin.jsx";
 
 const routes = [
   { path: "/", element: <Home /> },
@@ -18,22 +19,31 @@ const routes = [
   { path: "/register", element: <Register /> },
   { path: "/accounts/:id", element: <AccountsDetails /> },
   { path: "/combos/:id", element: <ComboDetails /> },
+
   
   // Rutas protegidas con `ProtectedRoute`
   {
     path: "/admin",
     element: (
-      <ProtectedRoute requiredRole="ADMIN">
+      //<ProtectedRoute requiredRole="ADMIN">
         <Admin />
-      </ProtectedRoute>
+    //  </ProtectedRoute>
     ),
   },
   {
     path: "/admin-products",
     element: (
-      <ProtectedRoute requiredRole="ADMIN">
+   //   <ProtectedRoute requiredRole="ADMIN">
         <ProductsAdmin />
-      </ProtectedRoute>
+    //  </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin-stock",
+    element: (
+    
+        <StockAdmin />
+ 
     ),
   },
 ];
